@@ -48,7 +48,7 @@ jobs:
       run: terraform apply -var instance_name=${{ github.event.inputs.instance_name }} -var aws_region=${{ github.event.inputs.aws_region }} -var instance_type=${{ github.event.inputs.instance_type }} -auto-approve
       working-directory: .
 
-  destroy_instance:
+  destroy_ec2:
     runs-on: ubuntu-latest
 
     # Execute this job only if the action input is "destroy"
@@ -63,6 +63,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ github.event.inputs.aws_region }}
     
     - name: Terraform Init
       run: terraform init
