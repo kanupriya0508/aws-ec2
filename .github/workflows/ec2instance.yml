@@ -74,5 +74,5 @@ jobs:
       working-directory: .
   
     - name: Terraform Destroy
-      run: terraform destroy -var instance_name=${{ github.event.inputs.instance_name }} -var aws_region=${{ github.event.inputs.aws_region }} -auto-approve
+      run: terraform destroy -var instance_name=${{ github.event.inputs.instance_name }} -var aws_region=${{ github.event.inputs.aws_region }} instance_type=${{ github.event.inputs.instance_type }} -auto-approve
       working-directory: .
