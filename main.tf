@@ -7,6 +7,14 @@ terraform {
   }
 
   required_version = ">= 1.2.0"
+
+  backend "s3" {
+    bucket         = "terraform-state-bucket-kp"
+    key            = "ec2project/terraform.tfstate"
+    region         = "us-west-2"               
+    encrypt        = true
+    dynamodb_table = "terraform-lock-table-kp" 
+  }
 }
 
 provider "aws" {

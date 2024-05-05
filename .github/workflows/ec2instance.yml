@@ -44,6 +44,10 @@ jobs:
       run: terraform validate
       working-directory: .
 
+    - name: Terraform Version and State List
+      run: terraform state list
+      working-directory: .
+
     - name: Terraform Apply
       run: terraform apply -var instance_name=${{ github.event.inputs.instance_name }} -var aws_region=${{ github.event.inputs.aws_region }} -var instance_type=${{ github.event.inputs.instance_type }} -auto-approve
       working-directory: .
@@ -71,6 +75,10 @@ jobs:
  
     - name: Terraform FMT
       run: terraform fmt
+      working-directory: .
+
+    - name: Terraform Version and State List
+      run: terraform state list
       working-directory: .
   
     - name: Terraform Destroy
